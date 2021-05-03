@@ -53,3 +53,4 @@ export const getUserInfo = (token)=> axios.get("/api/v1/pri/user/find_by_token",
         token
     }
 })
+
