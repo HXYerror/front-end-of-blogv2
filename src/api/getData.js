@@ -5,7 +5,7 @@ export const registerApi =
 (name,phone,pwd)=>axios.post("/api/v1/pri/user/register",{
     "name":name,
     "phone":phone,
-    "name":name
+    "pwd":pwd
 })
 
 
@@ -13,7 +13,7 @@ export const registerApi =
 export const loginApi =
 (userPhone,userPwd)=>axios.post("/api/v1/pri/user/login",{
     userPhone,
-    userPhone
+    userPwd
 })
 
 //轮播图接口
@@ -42,7 +42,7 @@ export const saveOrder = (token,article_id)=> axios.post("/api/v1/pri/order/save
 
 //获取订单列表
 export const getOrderList = (token)=> axios.get("/api/v1/pri/order/list",{
-    headers:{
+    params:{
         "token":token
     }
 })
