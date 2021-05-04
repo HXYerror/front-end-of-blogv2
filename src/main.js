@@ -6,6 +6,26 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+
+
+//路由拦截，检测所有的路由，
+router.beforeEach((to,from,next)=>{
+  const token = localStorage.getItem("token");
+  if(to.matched.some(record =>record.meta.requiresAuth)){
+
+    if(token){
+      next()
+    }else{
+        next({path:'/login'})
+    }
+  }else{
+    next()
+  }
+  
+})
+
+
+
 new Vue({
   router,
   store,

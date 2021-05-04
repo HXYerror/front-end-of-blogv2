@@ -11,6 +11,16 @@ import Regiser from "../views/Register/Register.vue"
 
 Vue.use(VueRouter)
 
+const originalPush = VueRouter.prototype.push
+
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+
+if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+
+return originalPush.call(this, location).catch(err => err)
+
+}
+
 const routes = [
   {
     path:"/",
@@ -30,21 +40,24 @@ const routes = [
   {
     path:"/order",
     name:" Order",
-    component: Order
+    component: Order,
+    meta:{requiresAuth:true}
   },
   {
     path:"/pay",
     name:"Pay",
-    component:Pay
+    component:Pay,
+    meta:{requiresAuth:true}
   },
   {
     path:"/personal",
     name:"Personal",
-    component:Personal
+    component:Personal,
+    meta:{requiresAuth:true}
   },
   {
-    path:"/regiser",
-    name:"Regiser",
+    path:"/register",
+    name:"Register",
     component:Regiser
   },
 ]
